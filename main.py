@@ -12,7 +12,7 @@ intents.message_content = True
 client = commands.Bot(command_prefix='!', intents=intents)
 
 def load_extensions():
-    for filename in os.listdir('/Users/henrylee/Desktop/Python Stuff/DiscordBot/venv/cogs'):
+    for filename in os.listdir('/cogs'):
         if filename.endswith('.py'):
             client.load_extension(f'cogs.{filename[:-3]}')
 

@@ -23,7 +23,7 @@ class Music(commands.Cog):
         if interaction.user.voice:
             channel = interaction.user.voice.channel
             voice = await channel.connect()
-            mp3_path = '/Users/henrylee/Desktop/Python Stuff/DiscordBot/venv/audio/fire-in-the-hole.mp3'
+            mp3_path = '/audio/fire-in-the-hole.mp3'
             source = FFmpegOpusAudio(mp3_path)
             voice.play(source)
             await interaction.response.send_message("FIRE IN THE HOLE!")
