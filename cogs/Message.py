@@ -20,24 +20,24 @@ class Message(commands.Cog):
         joke_data = response.json()
         joke_text = joke_data.get("joke", "Couldn't fetch a joke!")
 
-        channel = self.client.get_channel(CHANNEL_ID)
-        await channel.send(f"Hello, {member.display_name}! Did you find Waldo?")
+        channel = self.client.get_channel(CHANNEL_ID_WELCOME)
+        await channel.send(f"Hello, {member.global_name}! Did you find Waldo?")
         await channel.send(joke_text)
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
-        channel = self.client.get_channel(CHANNEL_ID)
-        await channel.send(f"{member.display_name} has been kicked from the server.")
+        channel = self.client.get_channel(CHANNEL_ID_WELCOME)
+        await channel.send(f"{member.global_name} has been kicked from the server.")
 
     @commands.Cog.listener()
     async def on_reaction_add(self, reaction, user):
         channel = reaction.message.channel
-        await channel.send(user.display_name + " added: " + reaction.emoji)
+        await channel.send(user.global_name + " added: " + reaction.emoji)
 
     @commands.Cog.listener()
     async def on_reaction_remove(self, reaction, user):
         channel = reaction.message.channel
-        await channel.send(user.display_name + " removed: " + reaction.emoji)
+        await channel.send(user.global_name + " removed: " + reaction.emoji)
 
     @commands.Cog.listener()
     async def on_message(self, message):
