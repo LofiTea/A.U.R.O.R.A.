@@ -1,7 +1,5 @@
 import os
 import nextcord
-import asyncio
-import logging
 
 from nextcord.ext import commands
 from apikeys import *
@@ -24,21 +22,5 @@ async def on_ready():
     print("The bot is now ready for use!")
     print("------------------------------")
 
-@client.event
-async def on_disconnect():
-    print('Bot disconnected! Attempting to reconnect...')
-    while not client.is_closed():
-        try:
-            await client.connect()
-            break
-        except Exception as e:
-            print(f'Error reconnecting: {e}')
-            await asyncio.sleep(5)
-
-@client.event
-async def on_error(event, *args, **kwargs):
-    logging.exception(f'Error in {event}')
-
 load_extensions()
-
 client.run(BOT_TOKEN)
